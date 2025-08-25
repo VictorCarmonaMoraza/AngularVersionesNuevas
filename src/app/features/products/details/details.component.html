@@ -1,5 +1,6 @@
 <section class="product-section">
-  <div class="product-container" *ngIf="product$ | async as product">
+  @if(product$ | async; as product){
+  <div class="product-container">
     <div class="product-wrapper">
       <img [alt]="product.title" class="product-image" [src]="product?.image">
       <div class="product-details">
@@ -9,9 +10,11 @@
           <div class="product-reviews">
             @for(item of starsArray; track $index){
             <span>
-              <span *ngIf="product.rating.rate" [innerHTML]="getStarSVG($index, product.rating.rate)"></span>
+              @if(product.rating.rate){
+              <span [innerHTML]="getStarSVG($index, product.rating.rate)"></span>
+              }
             </span>
-          }
+            }
             <span class="ml-3">{{product?.rating?.count}} reviews</span>
           </div>
         </div>
@@ -23,4 +26,5 @@
       </div>
     </div>
   </div>
+  }
 </section>
