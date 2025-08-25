@@ -7,9 +7,11 @@
         <h1 class="product-title">{{product?.title}}</h1>
         <div class="my-4 flex-space-between">
           <div class="product-reviews">
-            <span *ngFor="let star of starsArray; let index = index">
-              <span *ngIf="product.rating.rate" [innerHTML]="getStarSVG(index, product.rating.rate)"></span>
+            @for(item of starsArray; track $index){
+            <span>
+              <span *ngIf="product.rating.rate" [innerHTML]="getStarSVG($index, product.rating.rate)"></span>
             </span>
+          }
             <span class="ml-3">{{product?.rating?.count}} reviews</span>
           </div>
         </div>
